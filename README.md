@@ -10,4 +10,4 @@ c.elf, d.elf for src/cpp main.cpp and main2.cpp
 delete the file after make
 
 ```make clean dep all```
-for homework required to update the modification
+for homework required to update the modification @echo
