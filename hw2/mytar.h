@@ -1,7 +1,13 @@
 #ifndef __MYTAR_H__
 #define __MYTAR_H__
 
-#include <string>
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <sstream>
+#include <math.h>
+#include <iomanip>
+#include <time.h>
 
 struct TarHeader
 {
@@ -24,11 +30,13 @@ struct TarHeader
     char prefix[155];
     char pad[12];
 
-    int size;//file size in decimal
+    int size; //file size in decimal
 };
 typedef struct TarHeader token;
 
-void load(std::string);
+bool parsecmd(int, char *[]);
+
+void load(char *);
 void output(token);
 void __type(char);
 void __mode(char);

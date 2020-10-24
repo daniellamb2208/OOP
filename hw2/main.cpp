@@ -1,7 +1,8 @@
-#include"mytar.h"
+#include "mytar.h"
 
 int main(int argc, char *argv[])
 {
-    load("tar.tar");
+    if (parsecmd(argc, argv))
+        load(argv[1]);
     return 0;
 }

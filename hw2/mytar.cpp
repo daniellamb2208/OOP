@@ -1,23 +1,43 @@
 #include "mytar.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <cmath>
-#include <iomanip>
-#include <time.h>
 
 using namespace std;
 
-void load(string filename)
+bool parsecmd(int argc, char *argv[])
+{
+    int leng = strlen(argv[1]);
+
+    if (argc < 2)
+        cerr << "mytar: tar list requires an argument" << endl
+             << "Try give a tar file to check the program" << endl;
+    else if (argc > 2)
+        cerr << "mytar: Too many arguments" << endl //there is a optional argv 'dir or file' can found in archive
+             << "mytar: Exiting with failure status due to previous errors" << endl;
+    else if (argv[1][leng - 1] == '/') //tar could recgnize whether is a directory no matter it has '/'
+        cerr << "mytar: " << argv[1] << ": Cannot read: Is a directory" << endl
+             << "mytar: At begining of tape, quitting now" << endl
+             << "mytar: Error is not recoverable: exiting now" << endl;
+    else if (!(argv[1][leng - 4] == '.' && argv[1][leng - 3] == 't' && argv[1][leng - 2] == 'a' && argv[1][leng - 1] == 'r'))
+        cerr << "mytar: This does not look like a tar archive" << endl
+             << "mytar: Skipping to next header" << endl
+             << "mytar: Exiting with failure status due to previous errors" << endl;
+    else
+        return true;
+    return false;
+}
+void load(char *filename)
 {
     fstream fs(filename);
     stringstream s;
+    token file;
+
+    if (!fs.is_open())
+    {
+        cerr << "mytar: fail to open the file" << endl;
+        return;
+    }
 
     while (fs.peek() != EOF)
     {
-        token file;
-
         fs.read(file.filename, 100);
         fs.read(file.filemode, 8);
         fs.read(file.userid, 8);
@@ -28,11 +48,6 @@ void load(string filename)
         fs.get(file.type);
         fs.read(file.lname, 100);
         fs.read(file.USTAR_id, 6);
-        /*        if(file.USTAR_id[0] != 'u')
-        {
-            cerr<<"It's not the USTAR format\n";
-            return;
-        }*/
         fs.read(file.USTAR_ver, 2);
         fs.read(file.username, 32);
         fs.read(file.groupname, 32);
@@ -50,12 +65,22 @@ void load(string filename)
         s.clear(); //clear stringstream
 
         output(file);
+
+        char buffer; //check EOF
+        fs.get(buffer);
+        if (buffer == '\0')
+        {
+            fs.close();
+            return;
+        }
+        else
+            fs.seekg(-1, ios::cur);
     }
 
     fs.close();
 }
 
-void output(token file)
+void output(token file)//example output:  drwxrwxr-x lamb/lamb         0 2020-10-23 20:49 hw1/c/
 {
     __type(file.type);
 
