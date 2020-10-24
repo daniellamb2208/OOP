@@ -22,6 +22,7 @@ bool parsecmd(int argc, char *argv[])
              << "mytar: Exiting with failure status due to previous errors" << endl;
     else
         return true;
+        cout<<"?";
     return false;
 }
 void load(char *filename)
