@@ -1,5 +1,6 @@
 #include "lexer.cpp"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int Lexer::line = 1;
@@ -12,7 +13,7 @@ int main()
         while (true)
         {
             Token *t = lexer->scan();
-            cout << "Token: " << t->toString() << endl;
+            cout << "Token: " << setw(10) << left << t->toString() << t->getTag() << endl;
         }
     }
     catch (const std::exception &e)

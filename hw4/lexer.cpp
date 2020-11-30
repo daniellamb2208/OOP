@@ -34,7 +34,68 @@ public:
     int tag;
     Token() = default;
     Token(int t) : tag(t) {}
-    virtual string toString() { return "" + to_string(tag); }
+    virtual string toString()
+    {
+        stringstream ss; //for correct output
+        ss << (char)tag;
+        string s;
+        ss >> s;
+        return s;
+    }
+
+    string getTag()
+    {
+        switch (tag)
+        {
+        case 256:
+            return string("(AND)");
+        case 257:
+            return string("(BASIC)");
+        case 258:
+            return string("(BREAK)");
+        case 259:
+            return string("(DO)");
+        case 260:
+            return string("(ELSE)");
+        case 261:
+            return string("(EQ)");
+        case 262:
+            return string("(FALSE)");
+        case 263:
+            return string("(GE)");
+        case 264:
+            return string("(ID)");
+        case 265:
+            return string("(IF)");
+        case 266:
+            return string("(INDEX)");
+        case 267:
+            return string("(LE)");
+        case 268:
+            return string("(MINUS)");
+        case 269:
+            return string("(NE)");
+        case 270:
+            return string("(NUM)");
+        case 271:
+            return string("(OR)");
+        case 272:
+            return string("(REAL)");
+        case 273:
+            return string("(TEMP)");
+        case 274:
+            return string("(TRUE)");
+        case 275:
+            return string("(WHILE)");
+        default:
+            stringstream ss; //for correct output
+            ss << '(' << (char)tag << ')';
+            string s;
+            ss >> s;
+            return s;
+        }
+    }
+
     ~Token() = default;
 };
 
@@ -64,23 +125,6 @@ class Type : public Word
 public:
     int width;
     Type(string s, int tag, int w = 0) : Word(s, tag), width(w) {}
-    /*    static bool numeric(Type p)
-    {
-        if (p == Type::Char || p == Type::Int || p == Type::Float)
-            return true;
-        return false;
-    }
-    static Type *max(Type p1, Type p2)
-    {
-        if (!numeric(p1) || !numeric(p2))
-            return nullptr;
-        else if (p1 == Type::Float || p2 == Type::Float)
-            return Type::Float;
-        else if (p1 == Type::Int || p2 == Type::Int)
-            return Type::Int;
-        else
-            return Type::Char;
-    }*/
     ~Type();
 };
 
@@ -135,10 +179,10 @@ public:
         char i;
         cin.get(i);
         if (!cin.eof())
-            peek = static_cast<char>(i);
+            peek = i;
         else
         {
-            cerr << "End of file reached\n";
+            cout << "End of file reached\n";
             exit(EXIT_SUCCESS);
         }
     }
@@ -243,3 +287,27 @@ public:
         return tok;
     }
 };
+
+/*   bool operator==(Type * t2)
+    {
+        if (this->lexeme == t2->lexeme && this->tag == t2->tag && this->width == t2->width)
+            return true;
+        return false;
+    }
+    static bool numeric(Type *p)
+    {
+        if (p == Char || p == Int || p == Float)
+            return true;
+        return false;
+    }
+    static Type *max(Type *p1, Type *p2)
+    {
+        if (!numeric(p1) || !numeric(p2))
+            return nullptr;
+        else if (p1 == Float || p2 == Float)
+            return Float;
+        else if (p1 == Int || p2 == Int)
+            return Int;
+        else
+            return Char;
+    }*/

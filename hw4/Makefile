@@ -3,4 +3,4 @@ all: dep
 dep:
 	g++ -c lexer.cpp -o lexer.o
 clean:
-	rm -f *.o *.elf
+	rm -f *.o *.elf *.out
