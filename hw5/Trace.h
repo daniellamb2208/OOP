@@ -38,7 +38,7 @@ private:
     const string name;
 };
 
-#ifdef __TRACE__
+#ifndef __TRACE__
 #define TRACE(v, n) Trace v(n)
 #else
 #define TRACE(v, n)

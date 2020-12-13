@@ -1,7 +1,6 @@
 #include "Vector.h"
 #include "Trace.h"
 #include <iostream>
-
 using std::cout;
 using std::endl;
 
@@ -23,7 +22,7 @@ int main()
     ivec[3] = 10;
     cout << " ivec[3] = " << ivec[3] << endl;
 
-    cvec[3] = ’A’;
+    cvec[3] = 'A';
     cout << " cvec[3] = " << cvec[3] << endl;
 
     float f = 10.10;
@@ -38,7 +37,7 @@ int main()
     cout << " pivec.elem(3) = " << *pivec.elem(3) << endl;
     cout << " pivec[3]      = " << *pivec[3] << endl;
 
-    char c = ’A’;
+    char c = 'A';
     pcvec.elem(3) = &c;
     pcvec[3] = &c;
     cout << " pcvec.elem(3) = " << *pcvec.elem(3) << endl;
