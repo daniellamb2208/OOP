@@ -14,7 +14,7 @@ enum class
 
 static 
 
-sytax of JAVA 
+syntax of JAVA 
 
 stringstream 
 
