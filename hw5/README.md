@@ -1,10 +1,10 @@
 Simply implement of user-defined manipulators (p.635)
 Simply implement of specialization of template (p.341)
 
-reference book:
+# reference book:
 - the c++ programming language. special (third) edition
 
-keyword
+# keyword
 - ios_base::fmtflags
 - cppreference.com
 - stringstream
