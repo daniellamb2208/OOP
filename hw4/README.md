@@ -4,12 +4,18 @@ Slightly implement of part of parser
 source code came from its Appendix A
 
 # keyword
-inheritance 
+inheritance
+
 polymorphism 
+
 ~~encapsulation~~
 
 enum class 
+
 static 
+
 sytax of JAVA 
+
 stringstream 
+
 overloading 
