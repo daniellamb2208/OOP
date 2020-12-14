@@ -58,7 +58,6 @@ ostream &operator<<(ostream &o, smanip m) //replace &m
     ss.flags(m.f.get_flags()); //m(struct).f(Form).ff(fmtflags)
     ss.precision(m.f.get_precision());
     ss << m.v;
-    o << ss.str();
-    return o;
+    return o << ss.str();
 }
 #endif
