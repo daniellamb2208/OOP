@@ -3,12 +3,12 @@ Slightly implement of part of parser
 - Compilers: Principles, Techniques, and Tools, Second Edition
 source code came from its Appendix A
 
-keyword
+# keyword
     inheritance
     polymorphism
-#    encapsulation
+    ~~encapsulation~~
     enum class
-    `static`
+    static
     sytax of JAVA
     stringstream
     overloading
